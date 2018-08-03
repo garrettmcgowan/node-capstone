@@ -1,0 +1,9 @@
+language: node_js
+node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: r+K0cEKvv+hdETlM6slimY4z7t9F/JSSYQh8cntuWZs+yA9owKU7xEe1eXUtokyOs3Yz0nOAWsLTwPnvXPYlVbHVnJesDmQ7ipRFJw4a+f+A5A2vs8j0liWIfjDYoQIVMEvx008AjlVPf00GtMACrFlkaaonCxY9tv279mIfwo/2b5B9MTLZCOs30mQ36/Xh13kC1pEX94iB9BdDvn2O9nt2JAMMDXgq+EK9TFUZkzVDpss3VWATrVNeNVq+Cxh4MapuQ0eIMKFWMw9tcumAxk0/l2kWOzE/I6TDqaY3Psimb0qvQaTIZgYo8233t0Qx5tpdeAFvrw5ju0BL735zQ6drMCC91BTtT9YiDMmFpK1sjNO7/wpXbK/PZbS4M+INyxG7PPmOY678DBB/hVJpGi+kIP48NVFtcNuyVLXyxBB2Xy8z58aJY0DSdgCjzXvuZjNkc2LQHCX77KoV3DV4VJo11cCAsjkmBgYwUOtZIU6iRZZfI0SveXflKI3oeMgJkrhgPP9rkcN5Z+3V68Ok2CiQ2PYe+iky4arVOZMo24D5GaNh04BECVVjOtjjH9GW0lSu40hPPIRu7FMFKWAKT0tl5VMZ42/s1BCgyDFzNp98GB0j/qtkuO+KprvqOGkIwruVLSq0zZNhPueFSGSjqoSsW6Co+cdn45q+diRFdy0=
+  app: heroku setup travis
+  on:
+    repo: garrettmcgowan/node-capstone
