@@ -87,6 +87,10 @@ form {
 }
 
 
-button {
+.items-button {
     width: 100%;
+}
+
+.items:hover {
+    background-color: yellow;
 }
