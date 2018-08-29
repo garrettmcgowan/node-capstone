@@ -69,11 +69,33 @@ nav ul:hover {
 .form-container {
     text-align: center;
     width: 500px;
-    display: inline-block
+    display: inline-block;
 }
 
 form {
     text-align: center;
+    border: solid 2px black;
+}
+
+.collapsible {
+    display: none;
+}
+
+.active {
+    display: inline-block;
+}
+
+.items-container {
+    text-align: center;
+    display: inline-block
+}
+
+.item-box {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: solid 2px black;
+    width: 500px;
+    display: inline-block;
 }
 
 .item-input {
@@ -84,10 +106,31 @@ form {
     margin-top: 2px;
     margin-bottom: 2px;
     border: solid 1px;
+    text-decoration: none;
+    cursor: pointer;
 }
 
+.item-name {
+    cursor: pointer;
+}
 
-.items-button {
+.select-button {
+    width: 25%;
+    display: inline-block;
+}
+
+.button-container {
+    width: 500px;
+    margin: auto;
+    text-align: center;
+}
+
+button {
+    display: inline-block;
+    margin: auto;
+}
+
+.save-button {
     width: 100%;
 }
 

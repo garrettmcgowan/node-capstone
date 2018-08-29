@@ -15,7 +15,11 @@
     </header>
 
     <div class="form-container">
-        <button class="items-button">Items</button>
+        <div class="button-container">
+            <button class="magical-button">Magical</button>
+            <button class="physical-button">Physical</button>
+            <button class="defense-button">Defense</button>
+        </div>
         <form method="post" action="" class="build-form">
             <input type="text" data-attr="1" class="item-input" placeholder="Item 1">
             <input type="text" data-attr="2" class="item-input" placeholder="Item 2">
@@ -27,8 +31,8 @@
         <button class="save-button">Save</button>
     </div>
     <section class="items-section">
-        <h2 class="items-container">
-        </h2>
+        <ul class="items-container">
+        </ul>
 
     </section>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
