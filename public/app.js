@@ -1,3 +1,45 @@
+//item {
+//    name: String,
+//    cost: String,
+//    category: String,
+//    stats: {
+//        attackSpeed: String,
+//        physicalLifesteal: String,
+//        magicalLifesteal: String,
+//        physicalPentration: String,
+//        critChance: String,
+//        physicalProtection: String,
+//        magicalProtection: String,
+//        health: String,
+//        ccr: String,
+//        hp5: String,
+//        movementSpeed: String,
+//        mana: String,
+//        mp5: String,
+//        passive: String,
+//    }
+//}
+//
+//user {
+//    username: String,
+//    password: String,
+//}
+//
+//build {
+//    name: String,
+//    item1: String,
+//    item2: String,
+//    item3: String,
+//    item4: String,
+//    item5: String,
+//    item6: String,
+//    description: String,
+//    userID: {
+//        type: mongoose.Schema.Types.ObjectId,
+//        ref: 'User',
+//    }
+//}
+
 let MOCK_DATA = {
 
     items: [
