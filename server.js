@@ -1,5 +1,3 @@
-const express = require('express');
-const app = express();
 //const Hirez = require('hirez.js');
 //let hirez = new Hirez({
 //    devId: '2670'
@@ -7,9 +5,12 @@ const app = express();
 //});
 //hirez.smite('platform').session.genterate().then((res) => {
 //
-//})
+//});
+const express = require('express');
+const app = express();
 app.use(express.static('public'));
-app.get("/", (req, res) => {
-    res.send('hello world');
-});
+
+app.get('/', (req, res) =>
+    res.send('GET request to homepage'));
+
 app.listen(process.env.PORT || 8080);
