@@ -1,117 +1,75 @@
-//item {
-//    name: String,
-//    cost: String,
-//    category: String,
-//    stats: {
-//        attackSpeed: String,
-//        physicalLifesteal: String,
-//        magicalLifesteal: String,
-//        physicalPentration: String,
-//        critChance: String,
-//        physicalProtection: String,
-//        magicalProtection: String,
-//        health: String,
-//        ccr: String,
-//        hp5: String,
-//        movementSpeed: String,
-//        mana: String,
-//        mp5: String,
-//        passive: String,
-//    }
-//}
+//let MOCK_DATA = {
 //
-//user {
-//    username: String,
-//    password: String,
-//}
+//    items: [
+//        {
+//            name: 'item12',
+//            cost: '200g',
+//            category: 'magical power',
+//            stats: {
+//                health: '+250',
+//                power: '+30',
+//                passive: 'This is the items passive.  Items usually have passives once completed',
+//            },
+//            },
+//        {
+//            name: 'item23',
+//            cost: '300g',
+//            category: 'physical power',
+//            stats: {
+//                movementspeed: '10%',
+//                power: '+40',
+//            },
+//            },
+//        {
+//            name: 'item34',
+//            cost: '3300g',
+//            category: 'defense',
+//            stats: {
+//                attackspeed: '10%',
+//                power: '+40',
+//            },
+//        },
+//        {
+//            name: 'item45',
+//            cost: '2200g',
+//            category: 'defense',
+//            stats: {
+//                cooldownpercentage: '20%',
+//                power: '+40',
+//            },
+//            passive: 'This is the items passive.  Items usually have passives once completed',
+//            },
+//        {
+//            name: 'item56',
+//            cost: '300g',
+//            category: 'defense',
+//            stats: {
+//                movementspeed: '10%',
+//                penetration: '+10',
+//                health: '+200',
+//            },
+//            passive: 'This is the items passive.  Items usually have passives once completed',
+//            },
+//        {
+//            name: 'item67',
+//            cost: '1000g',
+//            category: 'physical power',
+//            stats: {
+//                power: '+40',
+//            },
+//            passive: 'This is the items passive.  Items usually have passives once completed',
+//            },
 //
-//build {
-//    name: String,
-//    item1: String,
-//    item2: String,
-//    item3: String,
-//    item4: String,
-//    item5: String,
-//    item6: String,
-//    description: String,
-//    userID: {
-//        type: mongoose.Schema.Types.ObjectId,
-//        ref: 'User',
-//    }
-//}
-
-let MOCK_DATA = {
-
-    items: [
-        {
-            name: 'item12',
-            cost: '200g',
-            category: 'magical power',
-            stats: {
-                health: '+250',
-                power: '+30',
-                passive: 'This is the items passive.  Items usually have passives once completed',
-            },
-            },
-        {
-            name: 'item23',
-            cost: '300g',
-            category: 'physical power',
-            stats: {
-                movementspeed: '10%',
-                power: '+40',
-            },
-            },
-        {
-            name: 'item34',
-            cost: '3300g',
-            category: 'defense',
-            stats: {
-                attackspeed: '10%',
-                power: '+40',
-            },
-        },
-        {
-            name: 'item45',
-            cost: '2200g',
-            category: 'defense',
-            stats: {
-                cooldownpercentage: '20%',
-                power: '+40',
-            },
-            passive: 'This is the items passive.  Items usually have passives once completed',
-            },
-        {
-            name: 'item56',
-            cost: '300g',
-            category: 'defense',
-            stats: {
-                movementspeed: '10%',
-                penetration: '+10',
-                health: '+200',
-            },
-            passive: 'This is the items passive.  Items usually have passives once completed',
-            },
-        {
-            name: 'item67',
-            cost: '1000g',
-            category: 'physical power',
-            stats: {
-                power: '+40',
-            },
-            passive: 'This is the items passive.  Items usually have passives once completed',
-            },
-
-        ],
-
-    users: [
-        {
-            name: 'Garrett McGowan',
-            email: 'myUserEmail@gmail.com',
-            password: 'secretPassword',
-            },
-        ],
-};
+//        ],
+//
+//    users: [
+//        {
+//            name: 'Garrett McGowan',
+//            email: 'myUserEmail@gmail.com',
+//            password: 'secretPassword',
+//            },
+//        ],
+//};
 //global filter variables to track state of filter
 let magicalFilter = false;
 let physicalFilter = false;
