@@ -7,9 +7,11 @@ const {
     DATABASE_URL
 } = require('./config');
 const {
-    Item
-} = require('./models/item');
-
+    Item = require('./models/item');
+};
+const {
+    Build = require('./models/build');
+};
 
 const app = express();
 
@@ -17,7 +19,7 @@ const app = express();
 app.use(morgan('common'));
 app.use(express.json());
 
-
+//Get requests
 app.get('/', (req, res) => {
     res.status(200).sendFile('public/index.html', {
         root: __dirname
@@ -41,6 +43,41 @@ app.get('/items', (req, res) => {
             });
 });
 
+app.get('/builds/', (req, res) => {
+    Build
+        .find()
+        .then( => {
+            res.json({
+            builds: builds.map((build) => build.serialize())
+            });
+        })
+        .catch(
+            err => {
+                console.error(err);
+                res.status(500).json({
+                    message:'Internal server error'
+                });
+            });
+});
+
+//app.post('/builds',(req, res) =>{
+//    Build
+//    .create({
+//        item1:req.body.item1,
+//        item2:req.body.item2,
+//        item3:req.body.item3,
+//        item4:req.body.item4,
+//        item5:req.body.item5,
+//        item6:req.body.item6})
+//    .then(
+//        build => res.status(201.json(build.serialize()))
+//    .catch(err => {
+//        console.error(err);
+//        res.status(500).json({message:'Internal server error'})
+//    });
+//};
+
+//run server function
 let server;
 
 function runServer(databaseUrl, port = PORT) {
