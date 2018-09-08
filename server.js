@@ -72,7 +72,7 @@ app.listen(process.env.PORT || 8080);
 console.log('Running on port 8080...')
 //created schemas
 //
-//seed database with some data
+//seed database with some data.
 //
 //create the endpoints one by one
 //
