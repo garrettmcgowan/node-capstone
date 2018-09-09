@@ -43,39 +43,37 @@ app.get('/items', (req, res) => {
             });
 });
 
-app.get('/builds/', (req, res) => {
+app.get('/builds/:id', (req, res) => {
     Build
-        .find()
-        .then( => {
-            res.json({
-            builds: builds.map((build) => build.serialize())
+        .findById(req.params.id)
+        .then(build => res.json(build.serialize()))
+        .catch(err => {
+            console.error(err);
+            res.status(500).json({
+                message: 'Internal server error'
             });
-        })
-        .catch(
-            err => {
-                console.error(err);
-                res.status(500).json({
-                    message:'Internal server error'
-                });
-            });
+        });
 });
 
-//app.post('/builds',(req, res) =>{
-//    Build
-//    .create({
-//        item1:req.body.item1,
-//        item2:req.body.item2,
-//        item3:req.body.item3,
-//        item4:req.body.item4,
-//        item5:req.body.item5,
-//        item6:req.body.item6})
-//    .then(
-//        build => res.status(201.json(build.serialize()))
-//    .catch(err => {
-//        console.error(err);
-//        res.status(500).json({message:'Internal server error'})
-//    });
-//};
+app.post('/builds',(req, res) =>
+    Build.create({
+        item1:req.body.item1,
+        item2:req.body.item2,
+        item3:req.body.item3,
+        item4:req.body.item4,
+        item5:req.body.item5,
+        item6:req.body.item6
+    })
+    .then(
+        build => res.status(201.json(build.serialize()))
+    .catch(err => {
+        console.error(err);
+        res.status(500).json({message:'Internal server error'})
+    });
+})
+
+
+
 
 //run server function
 let server;
