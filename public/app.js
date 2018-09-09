@@ -1,76 +1,3 @@
-//let MOCK_DATA = {
-//
-//    items: [
-//        {
-//            name: 'item12',
-//            cost: '200g',
-//            category: 'magical power',
-//            stats: {
-//                health: '+250',
-//                power: '+30',
-//                passive: 'This is the items passive.  Items usually have passives once completed',
-//            },
-//            },
-//        {
-//            name: 'item23',
-//            cost: '300g',
-//            category: 'physical power',
-//            stats: {
-//                movementspeed: '10%',
-//                power: '+40',
-//            },
-//            },
-//        {
-//            name: 'item34',
-//            cost: '3300g',
-//            category: 'defense',
-//            stats: {
-//                attackspeed: '10%',
-//                power: '+40',
-//            },
-//        },
-//        {
-//            name: 'item45',
-//            cost: '2200g',
-//            category: 'defense',
-//            stats: {
-//                cooldownpercentage: '20%',
-//                power: '+40',
-//            },
-//            passive: 'This is the items passive.  Items usually have passives once completed',
-//            },
-//        {
-//            name: 'item56',
-//            cost: '300g',
-//            category: 'defense',
-//            stats: {
-//                movementspeed: '10%',
-//                penetration: '+10',
-//                health: '+200',
-//            },
-//            passive: 'This is the items passive.  Items usually have passives once completed',
-//            },
-//        {
-//            name: 'item67',
-//            cost: '1000g',
-//            category: 'physical power',
-//            stats: {
-//                power: '+40',
-//            },
-//            passive: 'This is the items passive.  Items usually have passives once completed',
-//            },
-//
-//        ],
-//
-//    users: [
-//        {
-//            name: 'Garrett McGowan',
-//            email: 'myUserEmail@gmail.com',
-//            password: 'secretPassword',
-//            },
-//        ],
-//};
-//global filter variables to track state of filter
 let magicalFilter = false;
 let physicalFilter = false;
 let defenseFilter = false;
@@ -212,13 +139,15 @@ function filterDefenseItems() {
 };
 
 
+function bindEventListeners() {
+	filterDefenseItems;
+	filterPhysicalItems;
+	filterMagicalItems;
+	collapsibleItemWindow;
+	selectItem;
+	removeInput;
+}
 
-
-
-$(filterDefenseItems);
-$(filterPhysicalItems);
-$(filterMagicalItems);
-$(collapsibleItemWindow);
-$(selectItem);
-$(removeInput);
-$(renderItems(MOCK_DATA));
+$(
+	bindEventListeners()
+)

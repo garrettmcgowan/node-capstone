@@ -29,4 +29,4 @@ const buildSchema = mongoose.Schema({
         ref: 'User'
     }
 });
-model.exports = mongoose.model('Build', buildSchema);
+module.exports = mongoose.model('Build', buildSchema);
