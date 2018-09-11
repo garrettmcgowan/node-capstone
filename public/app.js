@@ -2,16 +2,43 @@ let magicalFilter = false;
 let physicalFilter = false;
 let defenseFilter = false;
 let utilityFilter = false;
-//global variable used to keep track of current input
+
+//global variable used to keep track of current item input
+
 let inputTracker = 1;
-//Render items
-function renderItems(data) {
-    data.items.forEach(item => {
-        $('.items-container').append(generateHTML(item));
-    })
+
+
+//Placed this function within getItemsFromServer
+//function renderItems(data) {
+//    data.items.forEach(item => {
+//        $('.items-container').append(generateHTML(item));
+//    });
+//}
+
+function getItemsFromServer() {
+    $.ajax({
+            type: 'GET',
+            url: '/Items',
+            dataType: 'json',
+            data: JSON.stringify(Item),
+        })
+        //    if the call is successful
+        .done(result => {
+            console.log(result);
+            result.forEach(item => {
+                $('.items-container').append(generateHTML(item));
+            });
+            //        if the call is failing
+            .fail(function (jqXHR, error, errorThrown) {
+                console.log(jqXHR);
+                console.log(error);
+                console.log(errorThrown);
+            });
+        })
 }
-//Generate item HTML
+//generate item html
 function generateHTML(item) {
+
     return `
 <li class="item-box">
     <div class="name-select-box">
@@ -32,13 +59,55 @@ function generateHTMLStats(stats) {
         return `<p class="item-value">${stats[key]}<p>`
     }).join('');
 }
+
+
+//Make a POST request to create a build
+createBuilds {
+    const newBuild = {
+        item1: $ {
+            '#item1'
+        }.Text(),
+        item2: $ {
+            '#item2'
+        }.Text(),
+        item3: $ {
+            '#item3'
+        }.Text(),
+        item4: $ {
+            '#item4'
+        }.Text(),
+        item5: $ {
+            '#item5'
+        }.Text(),
+        item6: $ {
+            '#item6'
+        }.Text(),
+    };
+    $.ajax({
+        type: 'POST',
+        url: '/builds/create',
+        dataType: 'json',
+        data: JSON.stringify(newBuild)
+    })
+};
+
+
+
+
+
+
+
+
 //Collapsible item window
+
 function collapsibleItemWindow() {
     $('.items-container').on('click', '.item-name', function () {
         $(this).parent().next().toggleClass("active");
     });
 }
-//Selected items are placed into input slots
+
+//Place selected items into the form inputs
+
 function selectItem() {
     $('.name-select-box').on('click', '.select-button', function () {
         if (inputTracker < 7) {
