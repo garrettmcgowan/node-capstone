@@ -1,15 +1,9 @@
 const mongoose = require('mongoose');
 
-const itemSchema = mongoose.Schema({
-    name: {
-        String
-    },
-    cost: {
-        String
-    },
-    category: {
-        String
-    },
+const itemSchema = new mongoose.Schema({
+    name: String,
+    cost: String,
+    category: String,
     stats: {
         attackSpeed: {
             String

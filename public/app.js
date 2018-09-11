@@ -199,13 +199,15 @@ function filterDefenseItems() {
 };
 
 
+function bindEventListeners() {
+	filterDefenseItems;
+	filterPhysicalItems;
+	filterMagicalItems;
+	collapsibleItemWindow;
+	selectItem;
+	removeInput;
+}
 
-
-
-$(filterDefenseItems);
-$(filterPhysicalItems);
-$(filterMagicalItems);
-$(collapsibleItemWindow);
-$(selectItem);
-$(removeInput);
-$(renderItems(MOCK_DATA));
+$(
+	bindEventListeners()
+)
