@@ -62,33 +62,24 @@ function generateHTMLStats(stats) {
 
 
 //Make a POST request to create a build
-createBuilds {
+function createBuilds() {
+
     const newBuild = {
-        item1: $ {
-            '#item1'
-        }.Text(),
-        item2: $ {
-            '#item2'
-        }.Text(),
-        item3: $ {
-            '#item3'
-        }.Text(),
-        item4: $ {
-            '#item4'
-        }.Text(),
-        item5: $ {
-            '#item5'
-        }.Text(),
-        item6: $ {
-            '#item6'
-        }.Text(),
+        item1: $('#item1').Text(),
+        item2: $('#item2').Text(),
+        item3: $('#item3').Text(),
+        item4: $('#item4').Text(),
+        item5: $('#item5').Text(),
+        item6: $('#item6').Text(),
     };
     $.ajax({
-        type: 'POST',
-        url: '/builds/create',
-        dataType: 'json',
-        data: JSON.stringify(newBuild)
-    })
+            type: 'POST',
+            url: '/builds/create',
+            dataType: 'json',
+            data: JSON.stringify(newBuild)
+        })
+        .done(result => {;
+        })
 };
 
 

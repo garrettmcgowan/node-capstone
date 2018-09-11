@@ -27,10 +27,8 @@ app.get('/', (req, res) => {
 
 app.get('/items', (req, res) => {
     Item.find()
-        .then(items => {
-            res.json({
-                items: items.map((item) => item.serialize())
-            });
+        .then(results => {
+            res.status(200).json(results);
         })
         .catch(
             err => {
