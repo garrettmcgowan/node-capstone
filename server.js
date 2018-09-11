@@ -6,12 +6,11 @@ const {
     PORT,
     DATABASE_URL
 } = require('./config');
-const {
-    Item = require('./models/item');
-};
-const {
-    Build = require('./models/build');
-};
+const Item = require('./models/item');
+
+//const {
+//    Build = require('./models/build');
+//};
 
 const app = express();
 
@@ -27,8 +26,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/items', (req, res) => {
-    Item
-        .find()
+    Item.find()
         .then(items => {
             res.json({
                 items: items.map((item) => item.serialize())
@@ -43,35 +41,35 @@ app.get('/items', (req, res) => {
             });
 });
 
-app.get('/builds/:id', (req, res) => {
-    Build
-        .findById(req.params.id)
-        .then(build => res.json(build.serialize()))
-        .catch(err => {
-            console.error(err);
-            res.status(500).json({
-                message: 'Internal server error'
-            });
-        });
-});
-
-app.post('/builds',(req, res) =>
-    Build.create({
-        item1:req.body.item1,
-        item2:req.body.item2,
-        item3:req.body.item3,
-        item4:req.body.item4,
-        item5:req.body.item5,
-        item6:req.body.item6
-    })
-    .then(
-        build => res.status(201.json(build.serialize()))
-    .catch(err => {
-        console.error(err);
-        res.status(500).json({message:'Internal server error'})
-    });
-})
-
+//app.get('/builds/:id', (req, res) => {
+//    Build
+//        .findById(req.params.id)
+//        .then(build => res.json(build.serialize()))
+//        .catch(err => {
+//            console.error(err);
+//            res.status(500).json({
+//                message: 'Internal server error'
+//            });
+//        });
+//});
+//
+//app.post('/builds',(req, res) =>
+//    Build.create({
+//        item1:req.body.item1,
+//        item2:req.body.item2,
+//        item3:req.body.item3,
+//        item4:req.body.item4,
+//        item5:req.body.item5,
+//        item6:req.body.item6
+//    })
+//    .then(
+//        build => res.status(201.json(build.serialize()))
+//    .catch(err => {
+//        console.error(err);
+//        res.status(500).json({message:'Internal server error'})
+//    });
+//})
+//
 
 
 
@@ -103,8 +101,8 @@ if (require.main === module) {
     runServer(DATABASE_URL).catch(err => console.error(err));
 };
 
-app.listen(process.env.PORT || 8080);
-console.log('Running on port 8080...')
+
+
 //created schemas
 //
 //seed database with some data.
