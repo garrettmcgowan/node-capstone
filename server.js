@@ -29,19 +29,6 @@ app.get('/', (req, res) => {
     });
 });
 
-/*
-app.get('/items', (req, res, next) => {
-    Item.find()
-
-        .then(results => {
-            res.status(200).json(results);
-        })
-        .catch(err => {
-            next(err);
-        });
-});
-*/
-
 app.get('/items', (req, res, next) => {
     Item.find()
         .then(results => {
