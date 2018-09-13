@@ -37,7 +37,30 @@ app.get('/items', (req, res, next) => {
         .catch(err => {
             next(err);
         })
-})
+});
+//Create a build
+app.post('/builds', (req, res, next) => {
+    //    make name and item1 fields required
+    const requiredFields = ["name", "item1"];
+    for (let i = 0; i < requiredFields.length; i++) {
+        const field = requiredFields[i];
+        if (!(field in req.body)) {
+            const message = `Missing \`${field}\` in request body`;
+            console.error(message);
+            return res.status(400).send(message);
+        }
+    }
+    const build = Build.create(
+        req.body.name,
+        req.body.item1,
+        req.body.item2,
+        req.body.item3,
+        req.body.item4,
+        req.body.item5,
+        req.body.item6,
+    );
+    res.status(201).json(build);
+});
 
 app.use((req, res, next) => {
     const err = new Error('Not Found');

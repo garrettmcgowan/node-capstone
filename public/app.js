@@ -18,7 +18,7 @@ let inputTracker = 1;
 function getItemsFromServer() {
     $.ajax({
             type: 'GET',
-            url: '/Items',
+            url: '/items',
             dataType: 'json',
             data: JSON.stringify(Item),
         })
@@ -29,13 +29,13 @@ function getItemsFromServer() {
                 $('.items-container').append(generateHTML(item));
             });
             //        if the call is failing
-            .fail(function (jqXHR, error, errorThrown) {
-                console.log(jqXHR);
-                console.log(error);
-                console.log(errorThrown);
-            });
         })
-}
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+        })
+};
 //generate item html
 function generateHTML(item) {
 
@@ -61,7 +61,7 @@ function generateHTMLStats(stats) {
 }
 
 
-//Make a POST request to create a build
+Make a POST request to create a build
 function createBuilds() {
 
     const newBuild = {
@@ -78,8 +78,8 @@ function createBuilds() {
             dataType: 'json',
             data: JSON.stringify(newBuild)
         })
-        .done(result => {;
-        })
+        .done()
+
 };
 
 
@@ -200,14 +200,14 @@ function filterDefenseItems() {
 
 
 function bindEventListeners() {
-	filterDefenseItems;
-	filterPhysicalItems;
-	filterMagicalItems;
-	collapsibleItemWindow;
-	selectItem;
-	removeInput;
+    filterDefenseItems;
+    filterPhysicalItems;
+    filterMagicalItems;
+    collapsibleItemWindow;
+    selectItem;
+    removeInput;
 }
 
 $(
-	bindEventListeners()
+    bindEventListeners()
 )
