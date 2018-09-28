@@ -73,6 +73,19 @@ nav ul:hover {
 }
 
 form {
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+label {
+    color: #555;
+    display: inline-block;
+    margin-left: 18px;
+    padding-top: 10px;
+    font-size: 14px;
+}
+
+form .build-form {
     text-align: center;
     border: solid 2px black;
 }
@@ -136,4 +149,14 @@ button {
 
 .items:hover {
     background-color: yellow;
+}
+
+#container {
+    position: fixed;
+    width: 340px;
+    height: 280px;
+    top: 50%;
+    left: 50%;
+    margin-top: -140px;
+    margin-left: -170px;
 }

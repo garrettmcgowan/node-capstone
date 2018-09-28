@@ -1,3 +1,4 @@
+//const API_BASE_URL = require('./config');
 let magicalFilter = false;
 let physicalFilter = false;
 let defenseFilter = false;
@@ -7,29 +8,21 @@ let utilityFilter = false;
 
 let inputTracker = 1;
 
-
-//Placed this function within getItemsFromServer
-//function renderItems(data) {
-//    data.items.forEach(item => {
-//        $('.items-container').append(generateHTML(item));
-//    });
-//}
-
 function getItemsFromServer() {
+    console.log("Loading items onto client");
     $.ajax({
             type: 'GET',
-            url: '/items',
-            dataType: 'json',
-            data: JSON.stringify(Item),
+            url: 'http://localhost:8080/items',
+            dataType: 'json'
         })
         //    if the call is successful
         .done(result => {
-            console.log(result);
+            console.log('result is' + JSON.stringify(result));
             result.forEach(item => {
                 $('.items-container').append(generateHTML(item));
-            });
-            //        if the call is failing
+            })
         })
+        //        if the call is failing
         .fail(function (jqXHR, error, errorThrown) {
             console.log(jqXHR);
             console.log(error);
@@ -43,44 +36,116 @@ function generateHTML(item) {
 <li class="item-box">
     <div class="name-select-box">
         <button class="select-button">Select</button>
-        <p class="item-name">${item.name}</p>
+        <p class="item-name">${item.DeviceName}</p>
     </div>
     <div class="collapsible">
-        <p class="item-cost">${item.cost}</p>
-        <p class="item-category">${item.category}</p>
-        ${generateHTMLStats(item.stats)}
+<p class="item-category">${item.ItemDescription.Description}</p>
+        <p class="item-cost">${item.Price}g</p>
+        ${generateMenuItemsHTML(item.ItemDescription.Menuitems)}
     </div>
 </li>
 `;
-}
-//Generate item stats HTML
-function generateHTMLStats(stats) {
-    return Object.keys(stats).map(key => {
-        return `<p class="item-value">${stats[key]}<p>`
+};
+
+function generateMenuItemHTML(menuItem) {
+    return `<p>${menuItem.Description}: ${menuItem.Value}</p>
+`
+};
+
+function generateMenuItemsHTML(menuItems) {
+    return menuItems.map(menuItem => {
+        return generateMenuItemHTML(menuItem);
     }).join('');
 }
 
 
-Make a POST request to create a build
-function createBuilds() {
+//Make a POST request to create a build
 
-    const newBuild = {
-        item1: $('#item1').Text(),
-        item2: $('#item2').Text(),
-        item3: $('#item3').Text(),
-        item4: $('#item4').Text(),
-        item5: $('#item5').Text(),
-        item6: $('#item6').Text(),
-    };
-    $.ajax({
-            type: 'POST',
-            url: '/builds/create',
-            dataType: 'json',
-            data: JSON.stringify(newBuild)
-        })
-        .done()
-
+function SaveBuilds() {
+    $('.save-button').on('click', function () {
+        const newBuild = {
+            item1: $('#item1').val(),
+            item2: $('#item2').val(),
+            item3: $('#item3').val(),
+            item4: $('#item4').val(),
+            item5: $('#item5').val(),
+            item6: $('#item6').val(),
+        };
+        $.ajax({
+                type: 'POST',
+                url: 'http://localhost:8080/builds',
+                dataType: 'json',
+                data: JSON.stringify(newBuild),
+                contentType: "application/json"
+            })
+            .done(result => {
+                console.log('result is' + JSON.stringify(result));
+                $('.item-input').val("");
+            })
+            .fail(function (jqXHR, error, errorThrown) {
+                console.log(jqXHR);
+                console.log(error);
+                console.log(errorThrown);
+            })
+    });
 };
+
+function getBuildsFromServer() {
+    $('.myBuilds').on('click', function () {
+
+
+        console.log("Loading builds onto client");
+        $.ajax({
+                type: 'GET',
+                url: '/builds',
+                dataType: 'json'
+            })
+            //    if the call is successful
+            .done(result => {
+                console.table(result)
+                result.forEach(build => {
+                    $('.builds-container').append(generateBuildHTML(build));
+                })
+            })
+            //        if the call is failing
+            .fail(function (jqXHR, error, errorThrown) {
+                console.log(jqXHR);
+                console.log(error);
+                console.log(errorThrown);
+            })
+    });
+};
+
+function generateBuildHTML(build) {
+    return `
+        <li class ="build-box">
+            <p class="item">${build.item1}</p>
+            <p class="item">${build.item2}</p>
+            <p class="item">${build.item3}</p>
+            <p class="item">${build.item4}</p>
+            <p class="item">${build.item5}</p>
+            <p class="item">${build.item6}</p>
+        </li>
+`
+}
+
+function popUpLogin() {
+    $('#logInBtn').on('click', function () {
+        return `
+        <div id="container">
+            <form>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
+                <div id="lower">
+                <input type="submit" value="Login">
+                </div><!--/ lower-->
+            </form>
+        </div>
+        `
+    });
+}
 
 
 
@@ -100,7 +165,7 @@ function collapsibleItemWindow() {
 //Place selected items into the form inputs
 
 function selectItem() {
-    $('.name-select-box').on('click', '.select-button', function () {
+    $('.items-container').on('click', '.select-button', function () {
         if (inputTracker < 7) {
             const itemText = $(this).next().text();
             console.log(itemText);
@@ -200,14 +265,17 @@ function filterDefenseItems() {
 
 
 function bindEventListeners() {
-    filterDefenseItems;
-    filterPhysicalItems;
-    filterMagicalItems;
-    collapsibleItemWindow;
-    selectItem;
-    removeInput;
+    popUpLogin()
+    getItemsFromServer();
+    SaveBuilds();
+    getBuildsFromServer();
+    filterDefenseItems();
+    filterPhysicalItems();
+    filterMagicalItems();
+    collapsibleItemWindow();
+    selectItem();
+    removeInput();
+
 }
 
-$(
-    bindEventListeners()
-)
+$(bindEventListeners())

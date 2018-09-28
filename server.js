@@ -1,47 +1,51 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
-const {
-    PORT,
-    DATABASE_URL
-} = require('./config');
-//const Item = require('./models/item');
-const Build = require('./models/build');
-
-const app = express();
-
-const itemSchema = new mongoose.Schema({
-    name: {
-        type: String
-    }
+const Hirez = require('hirez.js');
+let hirez = new Hirez({
+    devId: '2670',
+    authKey: '275CD287A1654C2D8CB0B0B6885158FF'
 });
 
-const Item = mongoose.model('Item', itemSchema);
+mongoose.Promise = global.Promise;
+const app = express();
 
+const {
+    PORT,
+    DATABASE_URL,
+    TEST_DATABASE_URL,
+    API_BASE_URL
+} = require('./config');
+const Build = require('./models/build');
+const Item = require('./models/item');
+
+app.use(express.static('public'));
 app.use(morgan('common'));
 app.use(express.json());
 
-//Get requests
 app.get('/', (req, res) => {
     res.status(200).sendFile('public/index.html', {
         root: __dirname
     });
 });
 
+hirez.smite('PC').session.generate()
+    .then((res) => {
+        // The res variable with be your sessionId
+        // It is also assigned to a process.env variable
+    });
+
 app.get('/items', (req, res, next) => {
-    Item.find()
-        .then(results => {
+    hirez.smite('PC').getItems().then(results => {
             res.status(200).json(results);
         })
         .catch(err => {
             next(err);
         })
 });
-//Create a build
 app.post('/builds', (req, res, next) => {
-    //    make name and item1 fields required
-    const requiredFields = ["name", "item1"];
+    const requiredFields = ["item1"];
+    res.json(req.body)
     for (let i = 0; i < requiredFields.length; i++) {
         const field = requiredFields[i];
         if (!(field in req.body)) {
@@ -50,16 +54,28 @@ app.post('/builds', (req, res, next) => {
             return res.status(400).send(message);
         }
     }
-    const build = Build.create(
-        req.body.name,
-        req.body.item1,
-        req.body.item2,
-        req.body.item3,
-        req.body.item4,
-        req.body.item5,
-        req.body.item6,
-    );
-    res.status(201).json(build);
+    Build.create({
+            item1: req.body.item1,
+            item2: req.body.item2,
+            item3: req.body.item3,
+            item4: req.body.item4,
+            item5: req.body.item5,
+            item6: req.body.item6
+        }).then(result => {
+            res.status(200).json(results);
+        })
+        .catch(err => {
+            next(err);
+        });
+});
+app.get('/builds', (req, res, next) => {
+    Build.find()
+        .then(results => {
+            res.status(200).json(results);
+        })
+        .catch(err => {
+            next(err);
+        })
 });
 
 app.use((req, res, next) => {
@@ -67,7 +83,6 @@ app.use((req, res, next) => {
     err.status = 404;
     next(err);
 });
-
 app.use((err, req, res, next) => {
     if (err.status) {
         const errBody = Object.assign({}, err, {
@@ -80,7 +95,6 @@ app.use((err, req, res, next) => {
         });
     }
 });
-
 //run server function
 // Listen for incoming connections
 if (process.env.NODE_ENV !== 'test') {
@@ -93,23 +107,12 @@ if (process.env.NODE_ENV !== 'test') {
         .catch(err => {
             console.error(err);
         });
-
     app.listen(PORT, function () {
         console.info(`Server listening on ${this.address().port}`);
     }).on('error', err => {
         console.error(err);
     });
 }
-//created schemas
-//
-//seed database with some data.
-//
-//create the endpoints one by one
-//
-//with above - focus on the full integration of an endpoint
-//
-//what I mean - create a specific endpoint - use the appropriate Mongoose operation to query your database as needed - perform the AJAX call on the client and render whatever you need
-
 
 //const Hirez = require('hirez.js');
 //let hirez = new Hirez({

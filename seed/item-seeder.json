@@ -1,4 +1,5 @@
-    [{
+[
+    {
         "name": "Breastplate of Valor",
         "cost": "2300g",
         "category": "Physical Defense",
@@ -7,14 +8,18 @@
             "mana": "Mana:+300",
             "mp5": "MP5:+10",
             "cdr": "CDR:+20%"
-        },
+        }
+    },
+    {
         "name": "Warrior Tabi",
         "cost": "1600g",
         "category": "Physical Power",
         "stats": {
             "physicalPower": "Physical Power:+40",
             "movementSpeed": "Movement Speed:+18%"
-        },
+        }
+    },
+    {
         "name": "Shoes of Focus",
         "cost": "1550g",
         "category": "Magical Power",
@@ -24,4 +29,5 @@
             "mana": "Mana:+250",
             "cdr": "CDR:+10%"
         }
-}]
+    }
+]
